@@ -7,8 +7,7 @@ import {
 	editTodo
 } from './actions.js'
 
-
-
+import './components.scss'
 
 
 const TodoListItem = () => {

@@ -4,7 +4,6 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 
-
 import App from './components'
 import reducer from './reducers'
 import { logger } from './middleware'

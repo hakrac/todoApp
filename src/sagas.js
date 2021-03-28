@@ -1,4 +1,13 @@
-import {put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {put, takeEvery, takeLatest, call} from 'redux-saga/effects'
+import { io } from 'socket.io-client'
+
+let socket = io('http://localhost:4001')
+
+const api = {
+	send: text => {
+		socket.emit('Hello', text)
+	}
+}
 
 
 export function* alertTodo(action) {
@@ -38,8 +47,15 @@ export function* postTodo(action) {
 		})
 }
 
+function* sendHello(action) {
+	if (socket) {
+		yield call(api.send, action.payload.text)
+	}
+}
+
 function* mySaga() {
 	yield takeEvery('ADD_TODO', alertTodo)
+	yield takeEvery('ADD_TODO', sendHello)
 	// yield takeEvery('ADD_TODO', postTodo)
 	// yield takeEvery('REQUEST_TODOS', fetchTodos)
 }
