@@ -1,13 +1,18 @@
 const path = require('path')
 
+
 module.exports = {
+	preset: 'jest-puppeteer',
 	setupFiles: [
 		path.resolve(__dirname, './src/polyfills.js')
 	],
-	moduleNameMapper: {
-		"\\.(css|scss|sass)": path.resolve(__dirname, '__mocks__/style.js')
+	globals: {
+		URL: 'http://localhost:4002'
 	},
 	testPathIgnorePatterns: [
-		'e2e'
-	]	
+		'<rootDir>/src'
+	],
+	testMatch: [
+		'<rootDir>/e2e/*.spec.js'
+	]
 }
