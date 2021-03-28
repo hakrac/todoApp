@@ -1,0 +1,7 @@
+const path = require('path')
+
+module.exports = {
+	setupFiles: [
+		path.resolve(__dirname, './src/polyfills.js')
+	]
+}
