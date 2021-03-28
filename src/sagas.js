@@ -5,7 +5,7 @@ export function* alertTodo(action) {
 	if (action.payload.text == 'this is from saga') {
 		return
 	}
-	alert('Todo added: ' +  action.payload.text)
+
 	yield put({type: 'ADD_TODO', payload: { text: 'this is from saga' }})
 }
 
@@ -40,8 +40,8 @@ export function* postTodo(action) {
 
 function* mySaga() {
 	yield takeEvery('ADD_TODO', alertTodo)
-	yield takeEvery('ADD_TODO', postTodo)
-	yield takeEvery('REQUEST_TODOS', fetchTodos)
+	// yield takeEvery('ADD_TODO', postTodo)
+	// yield takeEvery('REQUEST_TODOS', fetchTodos)
 }
 
 
