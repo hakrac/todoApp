@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "serve": "webpack serve --mode development",
     "unit": "npx jest --config unit.config.js",
-    "e2e": "npx jest --runInBand --config e2e.config.js",
+    "e2e": "npx jest --config e2e.config.js",
     "test": "npm run unit && npm run e2e"
   },
   "keywords": [],
