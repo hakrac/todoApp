@@ -14,5 +14,8 @@ module.exports = {
 	],
 	testMatch: [
 		'<rootDir>/e2e/*.spec.js'
+	],
+	setupFilesAfterEnv: [
+		'<rootDir>/e2e/e2e.setup.js'
 	]
 }
