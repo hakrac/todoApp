@@ -6,9 +6,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "serve": "webpack serve --mode development",
-    "unit": "npx jest --config jest.config.js",
-	"e2e" : "npx jest --config e2e.config.js",
-	"test": "npm run unit && npm run e2e"
+    "unit": "npx jest --config unit.config.js",
+    "e2e": "npx jest --config e2e.config.js",
+    "test": "npm run unit && npm run e2e"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +37,7 @@
     "html-webpack-plugin": "^5.3.1",
     "jest-environment-node": "^26.6.2",
     "jest-puppeteer": "^4.4.0",
+    "pptr-testing-library": "^0.6.4",
     "puppeteer": "^8.0.0",
     "redux-saga-test-plan": "^4.0.1",
     "sass": "^1.32.8",

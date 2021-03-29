@@ -3,5 +3,9 @@ module.exports = {
 		headless: true,
 		slowMo: false,
 		devtools: false
-	}
+	},
+	server: {
+    	command: 'npm run serve',
+    	port: 4000
+  	},
 } 

@@ -1,10 +1,25 @@
-import '../src/polyfills'
+import 'expect-puppeteer'
+import path from 'path'
+import { getDocument, queries, waitFor } from 'pptr-testing-library' 
 
-beforeAll(async () => {
-    await page.goto('https://google.com');
-});
+const { getByText, getByPlaceholderText } = queries
 
-it('should be titled "Google"', () => {
-    expect(1).toBe(1)
-	// await expect(page.title()).resolves.toMatch('Google');
-});
+describe('e2e todo app test', () => {
+	
+	beforeEach(async () => {
+		await page.goto('http://localhost:4000')
+	})
+
+	it('should load the page', async () => {
+		let document = await getDocument(page)
+		await page.screenshot({path: path.resolve(__dirname, '../output/screenshot.png')})
+		
+		let button = await getByText(document, 'Add Todo')
+		let input = await getByPlaceholderText(document, 'New Todo')
+
+		await input.type('Todo #1')
+		await button.click()
+		
+		await page.screenshot({ path: path.resolve(__dirname, '../output/newTodo.png')})
+	})
+})

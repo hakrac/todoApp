@@ -16,6 +16,14 @@ const TodoListItem = () => {
 
 
 const TodoList = () => {
+
+	return (
+		<ul>
+			{todos.map(t => 
+				<TodoListItem key={t.id} />
+			)}
+		</ul>
+	)
 }
 
 

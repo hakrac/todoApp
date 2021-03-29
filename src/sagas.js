@@ -9,7 +9,6 @@ const api = {
 	}
 }
 
-
 export function* alertTodo(action) {
 	if (action.payload.text == 'this is from saga') {
 		return
@@ -25,7 +24,6 @@ export function* fetchTodos(action) {
 			.then(res => res.todos)
 	yield put({type: 'LOAD_TODOS', payload: {todos}})
 }
-
 
 export function* postTodo(action) {
 	const data = {
