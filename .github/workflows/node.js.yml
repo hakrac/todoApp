@@ -26,9 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-	- run: npm test
+    - run: npm test
 	- name: Archive code coverage results
-	  uses: actions/upload-artifacts@v2
-	  with:
-		name: code-coverage-result
-		path: output/lcov-report/index.html
+      uses: actions/upload-artifacts@v2
+      with:
+        name: code-coverage-result
+        path: output/lcov-report/index.html
