@@ -1,3 +1,25 @@
-.todoInput {
-	border: 2px solid blue;
+@import "bootstrap";
+
+#addButton {
+	width: 100%
+}
+
+#todoList {
+	list-style-type: none;
+	padding: 0;
+}
+
+.todoItem {
+	background: $gray-300;
+}
+
+.btn-remove {
+	border-radius: 0 !important;
+	@extend .rounded-end;
+}
+
+.btn-complete {
+	border-radius: 0 !important;
+	margin-left: auto;
+	@extend .rounded-start;
 }

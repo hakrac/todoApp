@@ -11,5 +11,8 @@ module.exports = {
 	},
 	testPathIgnorePatterns: [
 		'e2e'
-	]	
+	],
+	globals: {
+		SERVER_URL: 'http://localhost:8000'
+	}	
 }

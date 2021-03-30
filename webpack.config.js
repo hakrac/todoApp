@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const webpack = require('webpack')
 
 module.exports = {
 	mode: 'development',
@@ -15,6 +15,9 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, './src/index.html')
+		}),
+		new webpack.DefinePlugin({
+			SERVER_URL: JSON.stringify('http://localhost:8080')
 		})
 	],
 	resolve: {
@@ -39,6 +42,6 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.resolve(__dirname, './dist'),
-		port: 4000
+		port: 5000
 	}
 }

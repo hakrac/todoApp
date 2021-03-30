@@ -6,9 +6,6 @@ module.exports = {
 	setupFiles: [
 		path.resolve(__dirname, './src/polyfills.js')
 	],
-	globals: {
-		URL: 'http://localhost:3000'
-	},
 	testPathIgnorePatterns: [
 		'<rootDir>/src'
 	],

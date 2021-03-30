@@ -1,11 +1,11 @@
-import {put, takeEvery, takeLatest, call} from 'redux-saga/effects'
+import { put, takeEvery, takeLatest, call } from 'redux-saga/effects'
 import { io } from 'socket.io-client'
 
-let socket = io('http://localhost:4001')
+let socket = io(SERVER_URL)
 
 const api = {
-	send: text => {
-		socket.emit('Hello', text)
+	send: (type, arg) => {
+		socket.emit(type, arg)
 	}
 }
 
@@ -19,7 +19,7 @@ export function* alertTodo(action) {
 
 
 export function* fetchTodos(action) {
-	const todos = yield fetch('http://localhost:4001/todos')
+	const todos = yield fetch(`${SERVER_URL}/todos`)
 			.then(res => res.json())
 			.then(res => res.todos)
 	yield put({type: 'LOAD_TODOS', payload: {todos}})
@@ -30,35 +30,40 @@ export function* postTodo(action) {
 		todos: [
 			{
 				text: action.payload.text,
-				id: 99,
 				completed: false
 			}
 		]	
 	}
 
-	const todos = yield fetch('http://localhost:4001/todos', {
+	const todo = yield fetch(`${SERVER_URL}/todos`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
 		})
+			.then(res => res.json())
+			.then(res => res.todos[0])
+
+	yield put({
+		type: 'ADD_TODO',
+		payload: {
+			...todo
+		}
+	})
 }
 
-function* sendHello(action) {
-	if (socket) {
-		yield call(api.send, action.payload.text)
-	}
+function* deleteTodo(action) {
+	yield fetch(`${SERVER_URL}/todo/${action.payload._id}`, {
+		method: 'DELETE'
+	})
 }
 
 function* mySaga() {
-	yield takeEvery('ADD_TODO', alertTodo)
-	yield takeEvery('ADD_TODO', sendHello)
-	// yield takeEvery('ADD_TODO', postTodo)
-	// yield takeEvery('REQUEST_TODOS', fetchTodos)
+	yield takeEvery('CREATE_TODO', postTodo)
+	yield takeEvery('REMOVE_TODO', deleteTodo)
+	yield takeEvery('REQUEST_TODOS', fetchTodos)
 }
-
-
 
 export default mySaga
 

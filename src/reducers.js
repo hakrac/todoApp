@@ -22,9 +22,7 @@ const reducer = (state = initialState, action) => {
 				todos: [
 					...state.todos,
 					{
-						id: nextTodoId(state),
-						text: action.payload.text,
-						completed: false
+						...action.payload
 					}
 				]
 			}
@@ -32,11 +30,11 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				todos: [
-					...state.todos.filter(t => t.id !== action.payload.id),
+					...state.todos.filter(t => t._id !== action.payload._id),
 					{
 						id: action.payload.id,
 						text: action.payload.text,
-						completed: false
+						completed: action.payload.completed
 					}
 				]
 			}
@@ -44,15 +42,15 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				todos: [
-					...state.todos.filter(t => t.id !== action.payload.id)
+					...state.todos.filter(t => t._id !== action.payload._id)
 				]
 			}
 		case "TOGGLE_TODO":
-			const todo = state.todos.find(t => t.id == action.payload.id) 
+			const todo = state.todos.find(t => t._id == action.payload._id) 
 			return {
 				...state,
 				todos: [
-					...state.todos.filter(t => t.id !== action.payload.id),
+					...state.todos.filter(t => t._id !== action.payload._id),
 					{
 						...todo,
 						completed: !todo.completed
@@ -63,6 +61,33 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				todos: action.payload.todos
+			}
+		case "SHOW_COMPLETED":
+			return {
+				...state,
+				filter: {
+					showCompleted: true,
+					showPending: false,
+					showAll: false
+				}
+			}
+		case "SHOW_PENDING":
+			return {
+				...state,
+				filter: {
+					showCompleted: false,
+					showPending: true,
+					showAll: false
+				}
+			}
+		case "SHOW_ALL":
+			return {
+				...state,
+				filter: {
+					showCompleted: false,
+					showPending: false,
+					showAll: true
+				}
 			}
 		default:
 			return state

@@ -7,7 +7,7 @@ const { getByText, getByPlaceholderText } = queries
 describe('e2e todo app test', () => {
 	
 	beforeEach(async () => {
-		await page.goto('http://localhost:4000')
+		await page.goto("http://localhost:5000")
 	})
 
 	it('should load the page', async () => {

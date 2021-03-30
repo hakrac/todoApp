@@ -6,6 +6,6 @@ module.exports = {
 	},
 	server: {
     	command: 'npm run serve',
-    	port: 4000
-  	},
+		port: 5000
+    },
 } 

@@ -7,10 +7,19 @@ import { Provider } from 'react-redux'
 import App from './components'
 
 describe('App component', () => {
+	const initialState = {
+		todos: [], 
+		filter: {
+			showAll: true,
+			showCompleted: false,
+			showPending: false
+		}	
+	}
+
 	it('should render App component', () => {
 		// Arrange
 		const reducer = jest.fn((s, a) => s)
-		const testStore = createStore(reducer, { todos: [] })
+		const testStore = createStore(reducer, initialState)
 		
 		render(
 			<Provider store={testStore}>
@@ -22,6 +31,7 @@ describe('App component', () => {
 
 		// Assert
 		expect(screen.getByRole('button')).toHaveTextContent('Add Todo')
-		// screen.getByPlaceholder('New Todo')
+		expect(screen.getByPlaceholderText('New Todo')).toBeTruthy()
+		
 	})
 })
