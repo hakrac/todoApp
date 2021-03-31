@@ -17,7 +17,7 @@ module.exports = {
 			template: path.resolve(__dirname, './src/index.html')
 		}),
 		new webpack.DefinePlugin({
-			SERVER_URL: JSON.stringify('http://localhost:8080')
+			SERVER_URL: JSON.stringify('http://mytodoServer:8080')
 		})
 	],
 	resolve: {
